@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Password Generator</title>
+        <link rel="stylesheet" href="style-password.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Generate a <br><span>Random Password</span></h1>
+            <div class="display">
+                <input id="password" type="text" placeholder="Password" readonly>
+                <img src="copylogo.png" alt="copy" onclick="copyPassword()">
+            </div>
+            <button onclick="generatePassword()">
+                <img src="generate.png" alt="Generate">
+                Generate
+            </button>
+        </div>
+        <div id="popup" class="popup">
+            Copied to Clipboard! ✅
+        </div>
+        <div id="timetaken">
+
+        </div>
+        <script>
+            const passwordBox = document.getElementById("password");
+            const length = 1000000;
+            const upperCase="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            const lowerCase="abcdefghijklmnopqrstuvwxyz"
+            const numbers="0123456789"
+            const specialChars="!@#$%^&*()-+_=~|}{[]<>/}"
+
+            const allChars = upperCase + lowerCase + numbers + specialChars;
+
+            function generatePassword() {
+                let password="";
+                password += upperCase[Math.floor(Math.random() * upperCase.length)];
+                password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+                password += numbers[Math.floor(Math.random() * numbers.length)];
+                password += specialChars[Math.floor(Math.random() * specialChars.length)];
+                var time1;
+                var time2;
+                time1=Date.now();
+                while (length > password.length) {
+                    password += allChars[Math.floor(Math.random() * allChars.length)];
+                }
+                passwordBox.value = password;
+                time2=Date.now();
+                document.getElementById("timetaken").innerHTML=(time2);
+                document.getElementById("timetaken").innerHTML+="<br>"+(time1);
+                }
+
+            function copyPassword() {
+                let passwordBox = document.getElementById("password");
+                navigator.clipboard.writeText(passwordBox.value);
+                let popup = document.getElementById("popup");
+                popup.style.display = "block";
+                popup.style.opacity = "1";
+                setTimeout(() => {
+                    popup.style.opacity = "0";
+                    setTimeout(() => popup.style.display = "none", 500);
+                }, 2000);
+            }
+        </script>
+    </body>
+</html>
