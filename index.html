@@ -20,12 +20,12 @@
         <div id="popup" class="popup">
             Copied to Clipboard! ✅
         </div>
-        <div id="timetaken">
+        <div id="timetaken" style="font-size:large">
 
         </div>
         <script>
             const passwordBox = document.getElementById("password");
-            const length = 1000000;
+            const length = 12;
             const upperCase="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             const lowerCase="abcdefghijklmnopqrstuvwxyz"
             const numbers="0123456789"
@@ -47,8 +47,9 @@
                 }
                 passwordBox.value = password;
                 time2=Date.now();
-                document.getElementById("timetaken").innerHTML=(time2);
-                document.getElementById("timetaken").innerHTML+="<br>"+(time1);
+                document.getElementById("timetaken").innerHTML="Time Taken to Generate The Password"+"<br>";
+                document.getElementById("timetaken").innerHTML+="Start Time of CPU: "+(time2);
+                document.getElementById("timetaken").innerHTML+="<br>"+"End Time of CPU: "+(time1);
                 }
 
             function copyPassword() {
